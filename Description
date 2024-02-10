@@ -1,0 +1,21 @@
+The provided code defines a convolutional neural network (CNN) architecture using TensorFlow's Keras API for image classification tasks, specifically for detecting deepfake images. Here's a breakdown of what the code does:
+
+Import Libraries: The code begins by importing necessary libraries including TensorFlow (tf), Keras modules (Sequential, Conv2D, MaxPooling2D, Flatten, Dense, Dropout), image data generator from tensorflow.keras.preprocessing.image, and train_test_split from scikit-learn (sklearn).
+
+Set Random Seed: The random seed for both NumPy and TensorFlow is set to ensure reproducibility of results.
+
+Define Dataset Path: The path to the dataset containing both genuine and deepfake images is defined. The path can be a directory containing subdirectories for different classes of images (e.g., genuine and deepfake).
+
+Define Model Architecture: The CNN architecture is defined using the Keras Sequential API. It consists of several convolutional layers (Conv2D) followed by max-pooling layers (MaxPooling2D) to extract features from input images. The Flatten layer flattens the output from the convolutional layers into a 1D vector. Then, there are two fully connected (Dense) layers with ReLU activation functions, and a Dropout layer for regularization. Finally, there is an output layer with a single neuron and a sigmoid activation function to output the binary classification result (genuine or deepfake).
+
+Compile the Model: The model is compiled using the Adam optimizer and binary cross-entropy loss function. The metric used to evaluate the model's performance during training is accuracy.
+
+Data Preprocessing: ImageDataGenerator is used for data augmentation and normalization. It rescales the pixel values of the images to the range [0, 1] and splits the dataset into training and validation sets.
+
+Generate Training and Validation Datasets: The flow_from_directory method is used to generate batches of augmented data from image files in the specified directory. It generates a batch of images and their corresponding labels on-the-fly during training. The dataset is split into training and validation sets using the validation_split parameter.
+
+Train the Model: The model is trained using the fit method with the training generator (train_generator) and validation generator (validation_generator) as input. It runs for 10 epochs.
+
+Save the Model: After training, the model is saved in the HDF5 format (.h5 file) for future use.
+
+Overall, this code defines, trains, and saves a CNN model for detecting deepfake images using TensorFlow's Keras API.
